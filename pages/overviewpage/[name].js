@@ -21,15 +21,16 @@ export const getStaticProps = async ({ params }) => {
   // const res = params;
   console.log(res);
   return {
-    props: { res: res },
+    props: { res: res,
+              name: params.name },
     // props: { res: res.name },
   };
 };
 // interface Props {
 //   addr: string;
 // }
-const Overview = ({ res }) => {
-  const [name, setName] = useState("");
+const Overview = ({ res, name }) => {
+  // const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const router = useRouter();
   console.log(res);
@@ -1587,7 +1588,7 @@ const Overview = ({ res }) => {
               }
               style={{fontSize: "30px", color: "#fff", textDecoration: "underline"}}
               >
-                {/* {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} /> */}
+                {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} />
               </h1>
             </Tooltip>
             <p style={{fontSize: "12", color: "#fff"}}>{description}</p>
