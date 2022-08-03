@@ -23,12 +23,22 @@ export const getDaoDetail = (name) => {
     }[name || ''] || name
   );
 };
+
 export const getDaosAddress = (name) => {
   return (
     {
       uniswap: '0x1a9C8182C09F50C8318d769245beA52c32BE35BC',
       sushiswap: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
       balancer: '0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f',
+    }[name || ''] || name
+  );
+};
+
+export const nameToImage = (name) => {
+  return(
+    {
+      uniswap: 'https://uniswap.org/images/twitter-card.jpg',
+      sushiswap: 'https://wp-api.zipmex.com/wp-content/uploads/2022/06/aave-aave-logo.png',
     }[name || ''] || name
   );
 };

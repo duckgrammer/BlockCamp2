@@ -164,10 +164,7 @@ const Gnosis = ({ res }) => {
   `;
 
   return (
-    // <div >
     <div key={res.id} style={{backgroundColor: "#fff7f8"}}>
-      <h1>{res.length}</h1>
-      {/* <h1>{ob.length}</h1> */}
       <StyledTable columns={columns} dataSource={data} style={{padding: "40px"}}/>
       <Modal 
         title={currModalInfo?.length+" Signers "+currModalInfo?.required+" Required"} 

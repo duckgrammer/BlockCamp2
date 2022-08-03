@@ -5,7 +5,7 @@ import {Card, Row, Col, Table, Avatar, Tooltip, } from 'antd';
 import { AreaChart, Area, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import styled from 'styled-components';
 import { getTokenAddress } from '../../constants/mapToken';
-import { getDaosAddress } from "../../constants/daoDetail.js"
+import { getDaosAddress, nameToImage } from "../../constants/daoDetail.js"
 import {LinkOutlined} from '@ant-design/icons';
 
 export const getStaticPaths = async () => {
@@ -1549,7 +1549,7 @@ const Overview = ({ res }) => {
   const [data, setData] =  useState([]);
 
   useEffect(() => {
-    // setName(res);
+    setName(res.name);
     setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     const temp = {
       key: '1',
@@ -1571,7 +1571,7 @@ const Overview = ({ res }) => {
     <div>
       <Row align="middle" style={{height: "300px", paddingInline:"200px",backgroundImage: "url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc1NTgiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0ZBNTAzNiIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0UzOUYwMCIgb2Zmc2V0PSIxIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZzU1OCkiIC8+Cjwvc3ZnPg==)"}}>
         <Col flex="200px">
-          <Avatar size={200} style={{marginRight: "20px"}}/>
+          <Avatar size={200} style={{marginRight: "20px"}} src={nameToImage(name)}/>
         </Col>
         <Col span={18}>
           <Card
@@ -1587,7 +1587,7 @@ const Overview = ({ res }) => {
               }
               style={{fontSize: "30px", color: "#fff", textDecoration: "underline"}}
               >
-                {/* {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} /> */}
+                {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} /> 
               </h1>
             </Tooltip>
             <p style={{fontSize: "12", color: "#fff"}}>{description}</p>
