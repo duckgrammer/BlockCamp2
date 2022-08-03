@@ -24,7 +24,8 @@ function Navbar() {
             <img src="/logo.png" style={{height: "80px"}} onClick={() => window.location = '/'}></img>
         </Col>
         <Col span={12} style={{display: "flex", justifyContent: "center"}}>
-            <SearchBar/>
+        {/*window.location.pathname === '/' ? null : <SearchBar />*/}
+          <SearchBar />
         </Col>
         <Col span={6} style={{display: "flex", justifyContent: "end"}}>
             <Button style={{marginInline: "10px"}}>List Dao</Button>
