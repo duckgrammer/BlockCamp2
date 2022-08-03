@@ -129,20 +129,14 @@ const Gnosis = ({ res }) => {
 
   useEffect(() => {
     for (var i = 0; i < 100; i++) {
-      // console.log(ob[i].transactionHash);
-      console.log(res[i].transactionHash);
-      // if(typeof ob[i] !== undefined){
+      console.log(res[i]);
       if(typeof res[i] !== undefined){
         const temp = { 
           key: res[i].transactionHash,
           date: res[i].executionDate,
-          // key: ob[i].transactionHash,
-          // date: ob[i].executionDate,
           activity: 'test',
           address: res[i].to,
           addresstype: res[i],
-          // address: ob[i].to,
-          // addresstype: ob[i],
           transfer: 'test',
           tags: ['cat', 'giraffe'],
           remark: 'test',
@@ -154,7 +148,7 @@ const Gnosis = ({ res }) => {
   }, []);
 
   useEffect(() => {
-    console.log(data);
+    //console.log(data);
   }, [data]);
 
   const StyledTable = styled(Table)`
