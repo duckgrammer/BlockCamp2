@@ -5,6 +5,7 @@ import {Card, Row, Col, Table, Avatar, Tooltip, } from 'antd';
 import { AreaChart, Area, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import styled from 'styled-components';
 import { getTokenAddress } from '../../constants/mapToken';
+import { getDaosAddress } from "../../constants/daoDetail.js"
 import {LinkOutlined} from '@ant-design/icons';
 
 export const getStaticPaths = async () => {
@@ -14,14 +15,14 @@ export const getStaticPaths = async () => {
   };
 };
 export const getStaticProps = async ({ params }) => {
-  // const transactiondetails = await fetch('0x1234' + params.addr).then((r) => r.json());
-  // const res = await fetch('http://blockcamp-api.lt.airin1.com/gnosis/treasuryHistories/' + getDaosAddress(params.name)).then((res) => res.json());
+  console.log(getDaosAddress(params.name));
+  const res = await fetch('https://api.orgboard.finance:2053/gnosis/treasuryHistories/' + getDaosAddress(params.name)).then((res) => res.json());
  
-  const res = params;
-  console.log(res.name);
+  // const res = params;
+  console.log(res);
   return {
-    // props: { res: res },
-    props: { res: res.name },
+    props: { res: res },
+    // props: { res: res.name },
   };
 };
 // interface Props {
@@ -1548,7 +1549,7 @@ const Overview = ({ res }) => {
   const [data, setData] =  useState([]);
 
   useEffect(() => {
-    setName(res);
+    // setName(res);
     setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     const temp = {
       key: '1',
@@ -1586,7 +1587,7 @@ const Overview = ({ res }) => {
               }
               style={{fontSize: "30px", color: "#fff", textDecoration: "underline"}}
               >
-                {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} />
+                {/* {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} /> */}
               </h1>
             </Tooltip>
             <p style={{fontSize: "12", color: "#fff"}}>{description}</p>
@@ -1602,9 +1603,9 @@ const Overview = ({ res }) => {
           <Col flex="auto">
               <Card>
               <div>
-      {
+              {
         isReady && (
-          <AreaChart width={730} height={250} data={chart} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+          <AreaChart width={730} height={250} data={res} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           {/* <AreaChart width={730} height={250} data={res} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}> */}
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
