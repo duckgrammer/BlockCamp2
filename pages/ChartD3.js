@@ -1,52 +1,51 @@
 import Tree from 'react-d3-tree';
-
-const TreeChart = () => {
-  const orgChart = {
-    name: 'CEO',
-    children: [
-      {
-        name: 'Manager',
-        attributes: {
-          department: 'Production',
-        },
-        children: [
-          {
-            name: 'Foreman',
-            attributes: {
-              department: 'Fabrication',
-            },
-            children: [
-              {
-                name: 'Worker',
-              },
-            ],
-          },
-          {
-            name: 'Foreman',
-            attributes: {
-              department: 'Assembly',
-            },
-            children: [
-              {
-                name: 'Worker',
-              },
-            ],
-          },
-        ],
+const a = {
+  name: 'CEO',
+  children: [
+    {
+      name: 'Manager',
+      attributes: {
+        department: 'Production',
       },
-    ],
-  };
+      children: [
+        {
+          name: 'Foreman',
+          attributes: {
+            department: 'Fabrication',
+          },
+          children: [
+            {
+              name: 'Worker',
+            },
+          ],
+        },
+        {
+          name: 'Foreman',
+          attributes: {
+            department: 'Assembly',
+          },
+          children: [
+            {
+              name: 'Worker',
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+const TreeChart = () => {
+
   return (
-    <>
-      <div id="treeWrapper" style={{ width: '1000px', height: '500px' }}>
-        <Tree
-          data={orgChart}
-          rootNodeClassName="node__root"
-          branchNodeClassName="node__branch"
-          leafNodeClassName="node__leaf"
-        />
-      </div>
-    </>
+    <div id="treeWrapper" style={{ width: '1000px', height: '500px' }}>
+      <Tree
+        className="color"
+        data={a}
+        rootNodeClassName="color"
+        branchNodeClassName="node__branch"
+        leafNodeClassName="node__leaf"
+      />
+    </div>
   );
 };
 export default TreeChart;
