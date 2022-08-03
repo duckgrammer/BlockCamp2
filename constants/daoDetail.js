@@ -23,11 +23,50 @@ export const getDaoDetail = (name) => {
     }[name || ''] || name
   );
 };
+export const getDaosAllAddress = (name) => {
+  return (
+    {
+      sushiswap: ['0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7'],
+      balancer: ['0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f','0xb618F903ad1d00d6F7b92f5b0954DcdC056fC533',],
+    }[name || ''] || name
+  );
+};
+export const getDaosty = (addr) => {
+  return (
+    {
+      '0xb618F903ad1d00d6F7b92f5b0954DcdC056fC533':{
+      address: e,
+      type: 'liquid',
+      value: '$40M',
+      chain: 'Ethereum'},
+      '0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3': {
+      address: e,
+      type: 'Treasury',
+      value: '$40M',
+      chain: 'Ethereum'},
+      '0x10a19e7ee7d7f8a52822f6817de8ea18204f2e4f': {
+      address: e,
+      type: 'Treasury',
+      value: '$41',
+      chain: 'Ethereum'},
+      '0xb618f903ad1d00d6f7b92f5b0954dcdc056fc533': {
+      address: e,
+      type: 'Treasury',
+      value: '$0',
+      chain: 'Ethereum'},
+      '0x19b3eb3af5d93b77a5619b047de0eed7115a19e7': {
+      address: e,
+      type: 'Treasury',
+      value: '$3',
+      chain: 'Ethereum'},
+    }[name || ''] || name
+  );
+};
+
 
 export const getDaosAddress = (name) => {
   return (
     {
-      uniswap: '0x1a9C8182C09F50C8318d769245beA52c32BE35BC',
       sushiswap: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
       balancer: '0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f',
     }[name || ''] || name
