@@ -1,11 +1,9 @@
-import { useRouter, NextRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
-import {Modal, Button, Row, Col, Avatar, Table, Tag, Space, Image} from 'antd';
+import React, { useState } from 'react';
+import {Modal, Row, Col, Avatar, Table, Tag, Image} from 'antd';
 import 'antd/dist/antd.css';
 import { UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import NumberFormat from 'react-number-format';
-
 
 export const getStaticPaths = async () => {
   return {
@@ -59,8 +57,8 @@ const Gnosis = ({ res }) => {
     },
     {
       title: 'Interacted Address',
-      dataIndex: 'to',
-      key: 'to',
+      dataIndex: 'recipient',
+      key: 'recipient',
     },
     {
       title: 'Address Type',
@@ -548,16 +546,24 @@ const Gnosis = ({ res }) => {
   return (
     <div key={res.id} style={{backgroundColor: "#fff7f8", padding: "40px"}}>
       <h2 style={{fontSize: "20px"}}>Top Interacted Addresses</h2>
-      <StyledTable pagination={false} columns={columns2} dataSource={data2}/>
+      <Row>
+        <Col flex="auto">
+          <StyledTable pagination={false} columns={columns2} dataSource={data2} style={{paddingRight: "20px"}}/>
+        </Col>
+        <Col flex="750px">
+          <img src="/chart.png" style={{width: "750px"}}/>
+        </Col>
+      </Row>
       <h2 style={{fontSize: "20px", paddingTop: "30px"}}>Transaction History</h2>
-      <StyledTable columns={columns} dataSource={res}/>
+      <StyledTable columns={columns} dataSource={res}
+      onRow={(r) => ({
+        onClick: () => window.open("https://etherscan.io/tx/"+r.transactionHash) }
+      )}
+      />
       <Modal 
         title={currModalInfo.length+" Signers "+currModalInfo.required+" Required"} 
         visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={800}
       >
-
-
-
             {currModalInfo.signerList.map((item) => {
               return (
                 <Row style={{paddingBlock: '25px'}} key={item.owner}>

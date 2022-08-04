@@ -7,7 +7,6 @@ import SearchBar from './Searchbar';
 
 const HomeModule = () => {
   const [keyword, setKeyWord] = useState('');
-  const [exist, setExist] = useState(false);
 
   const columns = [
     {
@@ -23,10 +22,26 @@ const HomeModule = () => {
     {
       title: 'Treasury',
       dataIndex: 'treasury',
+      render: (_, {treasury}) => (
+        <>
+          <p>
+            ${treasury}M
+          </p>
+        </>
+      ),
+      sorter: (a, b) => a.treasury - b.treasury,
     },
     {
       title: 'H24',
       dataIndex: 'H24',
+      render: (_, {H24}) => (
+        <>
+          <p style={{color: H24 > 0 ? "green" : "red"}}>
+            {H24 > 0 ? "+" : ""}{H24}%
+          </p>
+        </>
+      ),
+      sorter: (a, b) => a.H24 - b.H24,
     },
     {
       title: 'Acitive',
@@ -45,29 +60,29 @@ const HomeModule = () => {
 
   const data = [
     {
-      key: '2',
+      key: '3',
       logo: 'https://deepdao-uploads.s3.us-east-2.amazonaws.com/assets/dao/logo/sushiswap.jpeg',
-      name: 'sushiswap',
+      name: 'Sushiswap',
       address: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
       url: 'overviewpage/sushiswap',
-      treasury : "$3.5B",
-      H24 : "+1.1%",
-      acitivemembers : "3.3K",
-      proposal : "91",
-      votes: "45.5K",
+      treasury : "20",
+      H24 : +0.8,
+      acitivemembers : "10.8K",
+      proposal : "269",
+      votes: "41K",
     },
 
     {
-      key: '3',
+      key: '2',
       logo: 'https://cdn.discordapp.com/attachments/1000968857973956789/1004275922800742430/Blue_Circle_Line_Technology_Communication_Logo.png',
-      name: 'balancer',
+      name: 'Balancer',
       address: '0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f',
       url: 'overviewpage/balancer',
-      treasury : "$3.5B",
-      H24 : "+1.1%",
-      acitivemembers : "3.3K",
-      proposal : "90",
-      votes: "45.5K",
+      treasury : "42",
+      H24 : -1.4,
+      acitivemembers : "6.8K",
+      proposal : "178",
+      votes: "52.9K",
     },
   ];
 
