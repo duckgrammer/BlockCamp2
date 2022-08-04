@@ -15,7 +15,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   // const transactiondetails = await fetch('0x1234' + params.addr).then((r) => r.json());
   const res = await fetch('https://api.orgboard.finance:2053/gnosis/recurring/' + params.addr).then((res) => res.json());
-  console.log(res)
+  // console.log(res)
   return {
     props: {res: res},
   };
@@ -81,6 +81,7 @@ const Gnosis = ({ res }) => {
           >
             {[...Array(3)].map((e, i) => 
               <Avatar 
+                key={i}
                 style={{
                   backgroundColor: '#fa5036',
                 }}

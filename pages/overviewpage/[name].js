@@ -15,7 +15,7 @@ export const getStaticPaths = async () => {
   };
 };
 export const getStaticProps = async ({ params }) => {
-  console.log(getDaosAddress(params.name));
+  // console.log(getDaosAddress(params.name));
   const res = await fetch('https://api.orgboard.finance:2053/gnosis/treasuryHistories/' + getDaosAddress(params.name)).then((res) => res.json());
  
   // const res = params;
