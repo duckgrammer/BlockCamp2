@@ -101,9 +101,15 @@ const HomeModule = () => {
     }
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+  }, []);
+
   const StyledTable = styled(Table)`
   .ant-table-thead > tr > th{
+    position: "absolute",
     color: #fa5036;
+    z-index: 2,
   }
 `;
 
@@ -113,7 +119,7 @@ const HomeModule = () => {
         {/*<div pauseOnHover gradient={false} style={{paddingBlock: "40px", fontSize: "60px", color: "#fff", display: "flex", justifyContent: "center"}}>
             DAO Treasury Analysis Dashboard
         </div>*/}
-        <Marquee pauseOnHover gradient={false} style={{paddingBlock: "20px", fontSize: "100px", color: "#fff"}}>
+        <Marquee speed={200} pauseOnHover gradient={false} style={{paddingBlock: "20px", fontSize: "100px", color: "#fff"}}>
           DAO Treasury Analysis Dashboard
         </Marquee>
         <Row>
@@ -124,7 +130,8 @@ const HomeModule = () => {
           <Col span={1}></Col>
         </Row>
       </div>
-      <div style={{ paddingInline: '100px', paddingBlock: '50px', backgroundColor: "#fff7f8", minHeight:"1000px"}}>
+      <div style={{ paddingInline: '100px', paddingBlock: '50px', backgroundColor: "#fff7f8", 
+      }}>
         {keyword === '' ? (
           <StyledTable 
             rowClassName={() => "rowClassName1"}
@@ -145,6 +152,13 @@ const HomeModule = () => {
             })}
           </div>
         )}
+        <img src="/buoy.png" style={{
+          position: "relative",
+          left: "-280px",
+          top: "-150px",
+          zIndex: "0",
+          height: "800px",
+        }}/>
       </div>
     </div>
   );

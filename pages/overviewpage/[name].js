@@ -69,7 +69,7 @@ const Overview = ({ res, name }) => {
       addrAll.map(e=>{
         const temp = {
         address: e,
-        type: "Treasury",
+        type: "Liquid",
         value: "$40M",
         chain: "Ethereum",
       }
@@ -131,7 +131,7 @@ const Overview = ({ res, name }) => {
                     <h1>$26.3M</h1>
                     <Divider />
                     <h1>10.8k</h1>
-                    <h4>members</h4>
+                    <h4>active members</h4>
                     <h1>269</h1>
                     <h4>proposals</h4>
                   </div>
@@ -141,7 +141,7 @@ const Overview = ({ res, name }) => {
                     <p>$43M</p>
                     <Divider />
                     <p>47.6k</p>
-                    <p>members</p>
+                    <p>acrive members</p>
                     <p>178</p>
                     <p>proposals</p>
                   </div>

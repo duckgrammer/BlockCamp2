@@ -68,7 +68,7 @@ const Gnosis = ({ res }) => {
       key: 'recipient',
     },
     {
-      title: 'Address Type',
+      title: 'Signer',
       dataIndex: 'addresstype',
       key: 'addresstype',
       render: (_, { addresstype }) => (
