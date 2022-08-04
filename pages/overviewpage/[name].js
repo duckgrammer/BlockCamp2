@@ -5,7 +5,7 @@ import {Card, Row, Col, Table, Avatar, Tooltip, } from 'antd';
 import { AreaChart, Area, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import styled from 'styled-components';
 import { getTokenAddress } from '../../constants/mapToken';
-import { getDaosAddress, nameToImage, getDaosAllAddress } from "../../constants/daoDetail.js"
+import { getDaosAddress, nameToImage, getDaosAllAddress, getDaosTreasury, getDaoDetail } from "../../constants/daoDetail.js"
 import {LinkOutlined} from '@ant-design/icons';
 
 export const getStaticPaths = async () => {
@@ -19,6 +19,7 @@ export const getStaticProps = async ({ params }) => {
   const res = await fetch('https://api.orgboard.finance:2053/gnosis/treasuryHistories/' + getDaosAddress(params.name)).then((res) => res.json());
  
   // const res = params;
+  // console.log(getDaosAddress(params.name));
   // console.log(res);
   return {
     props: { res: res,
@@ -57,40 +58,38 @@ const Overview = ({ res, name }) => {
     },
   ];
 
-  const [data, setData] =  useState([]);
+  const [addr, setAddr] =  useState([]);
+   // const tmp = [];
   useEffect(() => {
     setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     
-    return () => {
+    // return () => {
       getDaosAllAddress(name).map(e=>{
         const temp = {
         address: e,
-        type: 'liquid',
-        value: '$40M',
-        chain: 'Ethereum',
+        type: getDaosTreasury(e).type,
+        value: getDaosTreasury(e).value,
+        chain: getDaosTreasury(e).chain,
       }
-      setData(data=>[...data, temp])
+      setAddr(data=>[...data, temp])
         });
-       
-      // })
-      // const temp = {
-      //   key: '1',
-      //   address: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
-      //   type: 'liquid',
-      //   value: '$40M',
-      //   chain: 'Ethereum',
-      // }
+    //   // const temp = {
+    //   //   key: '1',
+    //   //   address: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
+    //   //   type: 'liquid',
+    //   //   value: '$40M',
+    //   //   chain: 'Ethereum',
+    //   // }
       setIsReady(true)
-    }
     
-
+    // }
   }, []);
 
-  const StyledTable = styled(Table)`
-    .ant-table-thead > tr > th{
-      color: #fa5036;
-    }
-  `;
+  // const StyledTable = styled(Table)`
+  //   .ant-table-thead > tr > th{
+  //     color: #fa5036;
+  //   }
+  // `;
 
   return(
     <div>
@@ -112,7 +111,7 @@ const Overview = ({ res, name }) => {
               }
               style={{fontSize: "30px", color: "#fff", textDecoration: "underline"}}
               >
-                {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} />
+                {name.charAt(0).toUpperCase() + name.slice(1)}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} />
               </h1>
             </Tooltip>
             <p style={{fontSize: "12", color: "#fff"}}>{description}</p>
@@ -130,8 +129,8 @@ const Overview = ({ res, name }) => {
               <div>
               {
         isReady && (
+          // <AreaChart width={730} height={250} data={chart} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <AreaChart width={730} height={250} data={res} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-          {/* <AreaChart width={730} height={250} data={res} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}> */}
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
@@ -142,12 +141,10 @@ const Overview = ({ res, name }) => {
                 <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
               </linearGradient>
             </defs>
-            {/* <XAxis dataKey={res.date} /> */}
             <XAxis dataKey="date" />
             <YAxis />
             <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
-            {/* <Area type="monotone" dataKey={res.value} stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" /> */}
             <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
             {/* <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" /> */}
           </AreaChart>
@@ -158,7 +155,8 @@ const Overview = ({ res, name }) => {
           </Col>
       </Row>
       <h2 style={{fontSize: "20px", paddingTop: "50px"}}>Treasury Addresses</h2>
-      <StyledTable columns={columns} dataSource={data} size="middle" onRow={(r) => ({
+      <Table columns={columns} dataSource={addr} size="middle" onRow={(r) => ({
+      // <StyledTable columns={columns} dataSource={addr} size="middle" onRow={(r) => ({
             onClick: () => (window.location.href = '/gnosis/'+ r.address)
           })} />
     </div>
