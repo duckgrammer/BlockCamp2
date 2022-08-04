@@ -47,11 +47,11 @@ const Gnosis = ({ res }) => {
       filters: [
         {
           text: 'SENT',
-          value: 'sent',
+          value: 'SENT',
         },
         {
-          text: 'RECIEVE',
-          value: 'recieve',
+          text: 'RECEIVE',
+          value: 'RECEIVE',
         },
       ],
       render: (_, {type}) => (
@@ -61,6 +61,7 @@ const Gnosis = ({ res }) => {
           </p>
         </>
       ),
+      onFilter: (value, record) => record.type.indexOf(value) === 0,
     },
     {
       title: 'Interacted Address',
