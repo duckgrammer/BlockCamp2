@@ -5,7 +5,7 @@ import {Card, Row, Col, Table, Avatar, Tooltip, } from 'antd';
 import { AreaChart, Area, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import styled from 'styled-components';
 import { getTokenAddress } from '../../constants/mapToken';
-import { getDaosAddress, nameToImage, getDaosAllAddress, getDaosTreasury, getDaoDetail } from "../../constants/daoDetail.js"
+import { getDaosAddress, nameToImage, getDaosAllAddress, getDaosTreasury, getDaoDetail, getDaosValue } from "../../constants/daoDetail.js"
 import {LinkOutlined} from '@ant-design/icons';
 
 export const getStaticPaths = async () => {
@@ -64,15 +64,17 @@ const Overview = ({ res, name }) => {
     setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     
     // return () => {
-      getDaosAllAddress(name).map(e=>{
+      const addrAll = getDaosAllAddress(name)
+      // await Promise.all(addrAll.map(async (e)=>{
+      addrAll.map(e=>{
         const temp = {
         address: e,
-        type: getDaosTreasury(e).type,
-        value: getDaosTreasury(e).value,
-        chain: getDaosTreasury(e).chain,
+        type: "Treasury",
+        value: "$40M",
+        chain: "Ethereum",
       }
       setAddr(data=>[...data, temp])
-        });
+        })
     //   // const temp = {
     //   //   key: '1',
     //   //   address: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',

@@ -34,22 +34,45 @@ export const getDaosAllAddress = (name) => {
 export const getDaosTreasury = (addr) => {
   return (
     {
-      '0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3': {
+      0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3: {
       type: 'Treasury',
       value: '$40M',
       chain: 'Ethereum'},
-      '0x10a19e7ee7d7f8a52822f6817de8ea18204f2e4f': {
+      0x10a19e7ee7d7f8a52822f6817de8ea18204f2e4f: {
       type: 'Treasury',
       value: '$41',
       chain: 'Ethereum'},
-      '0xb618f903ad1d00d6f7b92f5b0954dcdc056fc533': {
+      0xb618f903ad1d00d6f7b92f5b0954dcdc056fc533: {
       type: 'Treasury',
       value: '$0',
       chain: 'Ethereum'},
-      '0x19b3eb3af5d93b77a5619b047de0eed7115a19e7': {
+      0x19b3eb3af5d93b77a5619b047de0eed7115a19e7: {
       type: 'Treasury',
       value: '$3',
       chain: 'Ethereum'},
+    }[addr || ''] || addr
+  );
+};
+export const getDaosValue = (addr) => {
+  return (
+    {
+      0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3:'$40M',
+
+      '0x10a19e7ee7d7f8a52822f6817de8ea18204f2e4f':'$41',
+
+      0xb618f903ad1d00d6f7b92f5b0954dcdc056fc533:'$0',
+
+      0x19b3eb3af5d93b77a5619b047de0eed7115a19e7:'$3',
+    }[addr || ''] || addr
+  );
+};
+export const getDaosType = (addr) => {
+  return (
+    {
+      '0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3':'Treasury',
+      '0x10a19e7ee7d7f8a52822f6817de8ea18204f2e4f':'Treasury',
+      '0xb618f903ad1d00d6f7b92f5b0954dcdc056fc533':'Treasury',
+      '0x19b3eb3af5d93b77a5619b047de0eed7115a19e7': 'Treasury',
     }[addr || ''] || addr
   );
 };
