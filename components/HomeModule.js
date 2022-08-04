@@ -116,12 +116,12 @@ const HomeModule = () => {
   return (
     <div>
       <div style={{ height: "300px", backgroundImage: "url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPgo8bGluZWFyR3JhZGllbnQgaWQ9Imc1NTgiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0ZBNTAzNiIgb2Zmc2V0PSIwIi8+PHN0b3Agc3RvcC1jb2xvcj0iI0UzOUYwMCIgb2Zmc2V0PSIxIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZzU1OCkiIC8+Cjwvc3ZnPg==)"}}>
-        {/*<div pauseOnHover gradient={false} style={{paddingBlock: "40px", fontSize: "60px", color: "#fff", display: "flex", justifyContent: "center"}}>
+        <div pauseOnHover gradient={false} style={{fontWeight: "800",paddingBlock: "40px", fontSize: "60px", color: "#fff", display: "flex", justifyContent: "center"}}>
             DAO Treasury Analysis Dashboard
-        </div>*/}
-        <Marquee speed={200} pauseOnHover gradient={false} style={{paddingBlock: "20px", fontSize: "100px", color: "#fff"}}>
+        </div>
+        {/*<Marquee speed={200} pauseOnHover gradient={false} style={{paddingBlock: "20px", fontSize: "100px", color: "#fff"}}>
           DAO Treasury Analysis Dashboard
-        </Marquee>
+      </Marquee>*/}
         <Row>
           <Col span={1}></Col>
           <Col span={22} style={{display: "flex", justifyContent: "center"}}>
