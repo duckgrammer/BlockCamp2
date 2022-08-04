@@ -1,7 +1,7 @@
 import { useRouter, NextRouter } from 'next/router';
 import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 import React, { useEffect, useState } from 'react';
-import {Card, Row, Col, Table, Avatar, Tooltip, } from 'antd';
+import {Card, Row, Col, Table, Avatar, Tooltip, Divider} from 'antd';
 import { AreaChart, Area, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import styled from 'styled-components';
 import { getTokenAddress } from '../../constants/mapToken';
@@ -122,13 +122,35 @@ const Overview = ({ res, name }) => {
       </Row>
     <div style={{paddingInline: "200px", paddingBlock: "50px", backgroundColor: "#fff7f8"}}> 
       <Row>
-          <Col flex="300px" style={{paddingRight: "20px"}}>
+          <Col span={8} style={{paddingRight: "20px"}}>
               <h2 style={{fontSize: "20px"}}>Treasury Current Total Value</h2>
-              <Card style={{height: "90%"}}>Placeholder</Card>
+              <Card style={{height: "90%"}}>
+                {name === "sushiswap" ?
+                  <div>
+                    <h4>Treasury</h4>
+                    <h1>$26.3M</h1>
+                    <Divider />
+                    <h1>10.8k</h1>
+                    <h4>members</h4>
+                    <h1>269</h1>
+                    <h4>proposals</h4>
+                  </div>
+                : 
+                  <div>
+                    <p>Treasury</p>
+                    <p>$43M</p>
+                    <Divider />
+                    <p>47.6k</p>
+                    <p>members</p>
+                    <p>178</p>
+                    <p>proposals</p>
+                  </div>
+                }
+              </Card>
           </Col>
-          <Col flex="auto">
+          <Col span={16}>
               <h2 style={{fontSize: "20px"}}>Treasury Value Overtime</h2>
-              <Card style={{height: "90%", paddingInline: "100px"}}>
+              <Card style={{height: "90%"}}>
               <div>
               {isReady && (
                   <AreaChart width={730} height={250} data={res} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>

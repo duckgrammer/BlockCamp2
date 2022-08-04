@@ -54,6 +54,13 @@ const Gnosis = ({ res }) => {
           value: 'recieve',
         },
       ],
+      render: (_, {type}) => (
+        <>
+          <p style={{color: type === "SENT" ? "red": "green"}}>
+            {type}
+          </p>
+        </>
+      ),
     },
     {
       title: 'Interacted Address',
@@ -545,12 +552,13 @@ const Gnosis = ({ res }) => {
 
   return (
     <div key={res.id} style={{backgroundColor: "#fff7f8", padding: "40px"}}>
-      <h2 style={{fontSize: "20px"}}>Top Interacted Addresses</h2>
       <Row>
         <Col flex="auto">
+          <h2 style={{fontSize: "20px"}}>Top Interacted Addresses</h2>
           <StyledTable pagination={false} columns={columns2} dataSource={data2} style={{paddingRight: "20px"}}/>
         </Col>
         <Col flex="750px">
+          <h2 style={{fontSize: "20px"}}>Wallet Activity Chart</h2>
           <img src="/chart.png" style={{width: "750px"}}/>
         </Col>
       </Row>
