@@ -10,7 +10,7 @@ import {LinkOutlined} from '@ant-design/icons';
 
 export const getStaticPaths = async () => {
   return {
-    paths: [{ params: { name: 'sushiswap'} }, { params: { name: 'balancer' } }, { params: { name: '' } }],
+    paths: [{ params: { name: 'sushiswap'} }, { params: { name: 'balancer' } }],
     fallback: false, // fallback is set to false because we already know the slugs ahead of time
   };
 };
