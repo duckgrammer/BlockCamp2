@@ -1,10 +1,10 @@
 import { useRouter, NextRouter } from 'next/router';
-import { NextPage, GetStaticProps, GetStaticPaths } from 'next';
 import React, { useEffect, useState } from 'react';
-import {Modal, Button, Row, Col, Avatar, Table, Tag, Space} from 'antd';
+import {Modal, Row, Col, Avatar, Table, Tag} from 'antd';
 import 'antd/dist/antd.css';
 import { UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
+import NumberFormat from 'react-number-format';
 
 export const getStaticPaths = async () => {
   return {
@@ -12,8 +12,6 @@ export const getStaticPaths = async () => {
     fallback: false, // fallback is set to false because we already know the slugs ahead of time
   };
 };
-
-// import React from 'react'
 
 export const getStaticProps = async ({ params }) => {
   // const transactiondetails = await fetch('0x1234' + params.addr).then((r) => r.json());
@@ -23,9 +21,7 @@ export const getStaticProps = async ({ params }) => {
     props: {res: res},
   };
 };
-// interface Props {
-//   addr: string;
-// }
+
 const Gnosis = ({ res }) => {
   const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -34,19 +30,36 @@ const Gnosis = ({ res }) => {
   const columns = [
     {
       title: 'Execution Time',
-      dataIndex: 'date',
-      key: 'date',
+      dataIndex: 'executionDate',
+      key: 'executionDate',
+      sorter: (a, b) => new Date(a.executionDate) - new Date(b.executionDate),
+      render: (_, {executionDate}) => (
+        <>
+          <p>
+            {executionDate.slice(11,19) + " " + executionDate.slice(0,10)}
+          </p>
+        </>
+      ),
     },
     {
       title: 'Activity',
-      dataIndex: 'activity',
-      key: 'activity',
-      sorter: (a, b) => a.activity.localeCompare(b.activity),
+      dataIndex: 'type',
+      key: 'type',
+      filters: [
+        {
+          text: 'SENT',
+          value: 'sent',
+        },
+        {
+          text: 'RECIEVE',
+          value: 'recieve',
+        },
+      ],
     },
     {
       title: 'Interacted Address',
-      dataIndex: 'address',
-      key: 'address',
+      dataIndex: 'to',
+      key: 'to',
     },
     {
       title: 'Address Type',
@@ -54,31 +67,51 @@ const Gnosis = ({ res }) => {
       key: 'addresstype',
       render: (_, { addresstype }) => (
         <>
-          <Button shape="circle" type="primary" onClick={() => showModal(addresstype)} icon={<UserOutlined />}/>
+          <Avatar.Group maxCount={1}
+            maxStyle={{
+              color: "#fa5036",
+              backgroundColor: "#fde3cf"
+            }}
+          >
+            {[...Array(3)].map((e, i) => 
+              <Avatar 
+                style={{
+                  backgroundColor: '#fa5036',
+                }}
+                icon={<UserOutlined />}
+                onClick={() => showModal(addresstype)} 
+                shape="circle" type="primary"
+              />
+            )}
+          </Avatar.Group>
         </>
       ),
     },
     {
       title: 'Amount',
-      dataIndex: 'transfer',
-      key: 'transfer',
-      render: (_, { transfer }) => (
+      dataIndex: 'usdValue',
+      key: 'usdValue',
+      render: (_, { usdValue, tokenSymbol, amount}) => (
         <>
-          {transfer[0] +" "+transfer[1]}
+          <p>
+            <NumberFormat displayType={'text'} value={amount} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true}/>
+            {" " + tokenSymbol + "\n≈ $"}
+            <NumberFormat displayType={'text'} value={usdValue} thousandSeparator={true} decimalScale={2} fixedDecimalScale={true}/>
+          </p>
         </>
       ),
-      sorter: (a, b) => a.transfer[0] - b.transfer[0],
+      sorter: (a, b) => a.usdValue-b.usdValue,
     },
     {
       title: 'Recurring',
-      key: 'tags',
-      dataIndex: 'tags',
-      render: (_, { tags }) => (
+      key: 'recurringMonths',
+      dataIndex: 'recurringMonths',
+      render: (_, { recurringMonths }) => (
         <>
-          <Tag color={tags === 1 ? "volcano": tags < 6 ? "geekblue" : "green"}>
-            {tags === 1 ? "never interacted before this month"
+          <Tag color={recurringMonths === 1 ? "volcano": recurringMonths < 6 ? "geekblue" : "green"}>
+            {recurringMonths === 1 ? "never interacted before this month"
             : 
-            tags < 6 ? "interacted monthly for "+tags+" months" 
+            recurringMonths < 6 ? "interacted monthly for "+recurringMonths+" months" 
             :
              "interacted monthly over 6 months"}
           </Tag>
@@ -177,27 +210,6 @@ const Gnosis = ({ res }) => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
-
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    for (var i = 0; i < 100; i++) {
-      console.log(res[i]);
-      if(typeof res[i] !== undefined){
-        const temp = { 
-          key: res[i].transactionHash,
-          date: res[i].executionDate.slice(11,19)+" "+res[i].executionDate.slice(0,10),
-          activity: res[i].type,
-          address: res[i].to,
-          addresstype: res[i],
-          transfer: [res[i].amount, res[i].tokenSymbol],
-          tags: res[i].recurringMonths,
-          remark: "N/A"
-        }
-        setData(data => [...data, temp]);
-      }
-    }
-  }, []);
   
   const StyledTable = styled(Table)`
     .ant-table-thead > tr > th{
@@ -208,9 +220,9 @@ const Gnosis = ({ res }) => {
   return (
     <div key={res.id} style={{backgroundColor: "#fff7f8", padding: "40px"}}>
       <h2 style={{fontSize: "20px"}}>Top Interacted Addresses</h2>
-      <Table pagination={false} columns={columns2} dataSource={data2}/>
+      <StyledTable pagination={false} columns={columns2} dataSource={data2}/>
       <h2 style={{fontSize: "20px", paddingTop: "30px"}}>Transaction History</h2>
-      <Table columns={columns} dataSource={data}/>
+      <StyledTable columns={columns} dataSource={res}/>
       <Modal 
         title={currModalInfo.length+" Signers "+currModalInfo.required+" Required"} 
         visible={isModalVisible} onOk={handleOk} onCancel={handleCancel} width={800}

@@ -30,15 +30,9 @@ export const getStaticProps = async ({ params }) => {
 //   addr: string;
 // }
 const Overview = ({ res, name }) => {
-  // const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const router = useRouter();
-  // console.log(name);
-
-
   const [isReady, setIsReady] = useState(false)
-
-
 
   const columns = [
     {
@@ -64,10 +58,7 @@ const Overview = ({ res, name }) => {
   ];
 
   const [data, setData] =  useState([]);
-  // const tmp = [];
   useEffect(() => {
-    // console.log(getDaosAllAddress(name))
-    // const addrlist[] = 
     setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     
     return () => {
