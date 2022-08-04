@@ -14,7 +14,7 @@ export const getDaoDetail = (name) => {
       uniswap: { address: '0x1a9C8182C09F50C8318d769245beA52c32BE35BC', url: '' },
       shushiswap: {
         adddress: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
-        url: 'https://wp-api.zipmex.com/wp-content/uploads/2022/06/aave-aave-logo.png',
+        url: 'https://deepdao-uploads.s3.us-east-2.amazonaws.com/assets/dao/logo/sushiswap.jpeg',
       },
       balancer: {
         address: '0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f',
@@ -31,35 +31,26 @@ export const getDaosAllAddress = (name) => {
     }[name || ''] || name
   );
 };
-export const getDaosty = (addr) => {
+export const getDaosTreasury = (addr) => {
   return (
     {
-      '0xb618F903ad1d00d6F7b92f5b0954DcdC056fC533':{
-      address: e,
-      type: 'liquid',
-      value: '$40M',
-      chain: 'Ethereum'},
       '0xe94B5EEC1fA96CEecbD33EF5Baa8d00E4493F4f3': {
-      address: e,
       type: 'Treasury',
       value: '$40M',
       chain: 'Ethereum'},
       '0x10a19e7ee7d7f8a52822f6817de8ea18204f2e4f': {
-      address: e,
       type: 'Treasury',
       value: '$41',
       chain: 'Ethereum'},
       '0xb618f903ad1d00d6f7b92f5b0954dcdc056fc533': {
-      address: e,
       type: 'Treasury',
       value: '$0',
       chain: 'Ethereum'},
       '0x19b3eb3af5d93b77a5619b047de0eed7115a19e7': {
-      address: e,
       type: 'Treasury',
       value: '$3',
       chain: 'Ethereum'},
-    }[name || ''] || name
+    }[addr || ''] || addr
   );
 };
 
@@ -77,7 +68,8 @@ export const nameToImage = (name) => {
   return(
     {
       uniswap: 'https://uniswap.org/images/twitter-card.jpg',
-      sushiswap: 'https://wp-api.zipmex.com/wp-content/uploads/2022/06/aave-aave-logo.png',
+      sushiswap: 'https://deepdao-uploads.s3.us-east-2.amazonaws.com/assets/dao/logo/sushiswap.jpeg',
+      balancer: 'https://cdn.discordapp.com/attachments/1000968857973956789/1004275922800742430/Blue_Circle_Line_Technology_Communication_Logo.png',
     }[name || ''] || name
   );
 };

@@ -5,7 +5,7 @@ import {Card, Row, Col, Table, Avatar, Tooltip, } from 'antd';
 import { AreaChart, Area, YAxis, XAxis, CartesianGrid, Legend } from 'recharts';
 import styled from 'styled-components';
 import { getTokenAddress } from '../../constants/mapToken';
-import { getDaosAddress, nameToImage, getDaosAllAddress } from "../../constants/daoDetail.js"
+import { getDaosAddress, nameToImage, getDaosAllAddress, getDaosTreasury, getDaoDetail } from "../../constants/daoDetail.js"
 import {LinkOutlined} from '@ant-design/icons';
 
 export const getStaticPaths = async () => {
@@ -19,6 +19,7 @@ export const getStaticProps = async ({ params }) => {
   const res = await fetch('https://api.orgboard.finance:2053/gnosis/treasuryHistories/' + getDaosAddress(params.name)).then((res) => res.json());
  
   // const res = params;
+  // console.log(getDaosAddress(params.name));
   // console.log(res);
   return {
     props: { res: res,
@@ -33,8 +34,461 @@ const Overview = ({ res, name }) => {
   // const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const router = useRouter();
+  console.log(res)
   // console.log(name);
+  const chart =[
 
+    {
+    "date": "2020-09-24T18:38:03Z",
+    "value": 0
+    },
+    
+    
+    {
+    "date": "2020-09-24T20:29:36Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-25T14:24:46Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T03:03:18Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T05:01:35Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T05:25:11Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T05:35:23Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T05:48:35Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T05:51:55Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T05:52:53Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:02:21Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:03:01Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:03:53Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:04:34Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:04:58Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:12:04Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:23:24Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T06:24:40Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T17:11:32Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T17:12:37Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T17:22:30Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T17:23:16Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T17:32:29Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T17:33:55Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T18:08:07Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T18:09:44Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T18:22:58Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-27T18:40:15Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:02:16Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:06:35Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:16:01Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:22:56Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:30:13Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:35:45Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:43:55Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:49:41Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:54:24Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T06:59:16Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T07:03:55Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T07:08:14Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T18:43:26Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T18:48:27Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T18:55:32Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T19:01:11Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T19:06:49Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T19:08:00Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-09-29T19:12:20Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-10-01T14:19:54Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-10-01T15:10:04Z",
+    "value": 0
+    },
+    
+    {
+    "date": "2020-10-01T16:18:07Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-02T14:36:25Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-02T14:36:57Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-02T14:37:52Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-02T14:58:03Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-02T14:59:54Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-04T17:49:55Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-04T17:51:54Z",
+    "value": 1121586.6666666667
+    },
+    
+    {
+    "date": "2020-10-04T17:52:55Z",
+    "value": 2278905.168868297
+    },
+    
+    {
+    "date": "2020-10-04T18:14:34Z",
+    "value": 2161332.034654357
+    },
+    
+    {
+    "date": "2020-10-04T18:20:51Z",
+    "value": 2044104.0483884767
+    },
+    
+    {
+    "date": "2020-10-04T18:25:42Z",
+    "value": 1927546.7906390708
+    },
+    
+    {
+    "date": "2020-10-04T18:29:10Z",
+    "value": 1810377.6738190749
+    },
+    
+    {
+    "date": "2020-10-04T18:34:40Z",
+    "value": 1630439.4970337767
+    },
+    
+    {
+    "date": "2020-10-05T07:20:23Z",
+    "value": 3724559.4970337767
+    },
+    
+    {
+    "date": "2020-10-05T11:13:11Z",
+    "value": 3604325.0280737765
+    },
+    
+    {
+    
+    "date": null,
+    "value": 3604325.0280737765
+    },
+    
+    {
+    "date": "2020-10-05T13:46:24Z",
+    "value": 3604325.0280737765
+    },
+    
+    {
+    
+    "date": null,
+    "value": 3604325.0280737765
+    },
+    
+    {
+    "date": "2020-10-05T13:47:53Z",
+    "value": 3604325.0280737765
+    },
+    
+    {
+    
+    "date": null,
+    "value": 3604325.0280737765
+    },
+    
+    {
+    "date": "2020-10-05T13:48:42Z",
+    "value": 3604325.0280737765
+    },
+    
+    {
+    "date": "2020-10-05T13:49:11Z",
+    "value": 3394325.0280737765
+    },
+    
+    {
+    "date": "2020-10-05T19:35:04Z",
+    "value": 3394325.0280737765
+    },
+    
+    {
+    "date": "2020-10-05T19:46:24Z",
+    "value": 2449325.028073777
+    },
+    
+    {
+    "date": "2020-10-05T20:02:56Z",
+    "value": 2449325.028073777
+    },
+    
+    {
+    "date": "2020-10-05T20:08:10Z",
+    "value": 2128752.442633777
+    },
+    
+    {
+    "date": "2020-10-05T20:18:10Z",
+    "value": 2114752.442633777
+    },
+    
+    {
+    "date": "2020-10-05T20:48:40Z",
+    "value": 2037752.442633777
+    },
+    
+    {
+    
+    "date": null,
+    "value": 2037752.442633777
+    },
+    
+    {
+    "date": "2020-10-05T20:56:41Z",
+    "value": 2037752.442633777
+    },
+    
+    {
+    "date": "2020-10-05T20:57:32Z",
+    "value": 2030752.442633777
+    },
+    
+    {
+    
+    "date": null,
+    "value": 2030752.442633777
+    },
+    
+    {
+    "date": "2020-10-06T15:36:02Z",
+    "value": 2030752.442633777
+    },
+    
+    {
+    "date": "2020-10-06T15:37:18Z",
+    "value": 2030752.442633777
+    },
+    
+    {
+    "date": "2020-10-06T17:42:42Z",
+    "value": 2030752.442633777
+    },
+    
+    {
+    "date": "2020-10-06T20:07:34Z",
+    "value": 1995752.442633777
+    },
+    
+    {
+    "date": "2020-10-09T11:51:28Z",
+    "value": 1995752.442633777
+    },
+    
+    {
+    "date": "2020-10-13T01:17:18Z",
+    "value": 1981752.442633777
+    },
+    
+    {
+    "date": "2020-10-13T08:26:13Z",
+    "value": 1981752.442633777
+    },
+  ]
 
   const [isReady, setIsReady] = useState(false)
 
@@ -63,43 +517,41 @@ const Overview = ({ res, name }) => {
     },
   ];
 
-  const [data, setData] =  useState([]);
+  const [addr, setAddr] =  useState([]);
+  const [img, setImg] = useState(getDaoDetail(name).url)
   // const tmp = [];
   useEffect(() => {
     // console.log(getDaosAllAddress(name))
     // const addrlist[] = 
     setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.");
     
-    return () => {
+    // return () => {
       getDaosAllAddress(name).map(e=>{
         const temp = {
         address: e,
-        type: 'liquid',
-        value: '$40M',
-        chain: 'Ethereum',
+        type: getDaosTreasury(e).type,
+        value: getDaosTreasury(e).value,
+        chain: getDaosTreasury(e).chain,
       }
-      setData(data=>[...data, temp])
+      setAddr(data=>[...data, temp])
         });
-       
-      // })
-      // const temp = {
-      //   key: '1',
-      //   address: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
-      //   type: 'liquid',
-      //   value: '$40M',
-      //   chain: 'Ethereum',
-      // }
+    //   // const temp = {
+    //   //   key: '1',
+    //   //   address: '0x19B3Eb3Af5D93b77a5619b047De0EED7115A19e7',
+    //   //   type: 'liquid',
+    //   //   value: '$40M',
+    //   //   chain: 'Ethereum',
+    //   // }
       setIsReady(true)
-    }
     
-
+    // }
   }, []);
 
-  const StyledTable = styled(Table)`
-    .ant-table-thead > tr > th{
-      color: #fa5036;
-    }
-  `;
+  // const StyledTable = styled(Table)`
+  //   .ant-table-thead > tr > th{
+  //     color: #fa5036;
+  //   }
+  // `;
 
   return(
     <div>
@@ -121,7 +573,7 @@ const Overview = ({ res, name }) => {
               }
               style={{fontSize: "30px", color: "#fff", textDecoration: "underline"}}
               >
-                {name}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} />
+                {name.charAt(0).toUpperCase() + name.slice(1)}<LinkOutlined  style={{ fontSize: '20px' , marginBottom: '5px'}} />
               </h1>
             </Tooltip>
             <p style={{fontSize: "12", color: "#fff"}}>{description}</p>
@@ -139,8 +591,8 @@ const Overview = ({ res, name }) => {
               <div>
               {
         isReady && (
+          // <AreaChart width={730} height={250} data={chart} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
           <AreaChart width={730} height={250} data={res} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-          {/* <AreaChart width={730} height={250} data={res} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}> */}
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
@@ -151,12 +603,10 @@ const Overview = ({ res, name }) => {
                 <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
               </linearGradient>
             </defs>
-            {/* <XAxis dataKey={res.date} /> */}
             <XAxis dataKey="date" />
             <YAxis />
             <CartesianGrid strokeDasharray="3 3" />
             <Tooltip />
-            {/* <Area type="monotone" dataKey={res.value} stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" /> */}
             <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="url(#colorUv)" />
             {/* <Area type="monotone" dataKey="pv" stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)" /> */}
           </AreaChart>
@@ -167,7 +617,8 @@ const Overview = ({ res, name }) => {
           </Col>
       </Row>
       <h2 style={{fontSize: "20px", paddingTop: "50px"}}>Treasury Addresses</h2>
-      <StyledTable columns={columns} dataSource={data} size="middle" onRow={(r) => ({
+      <Table columns={columns} dataSource={addr} size="middle" onRow={(r) => ({
+      // <StyledTable columns={columns} dataSource={addr} size="middle" onRow={(r) => ({
             onClick: () => (window.location.href = '/gnosis/'+ r.address)
           })} />
     </div>
